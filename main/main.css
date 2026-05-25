@@ -1,0 +1,1041 @@
+:root {
+    --bg-main: #181a20;       /* Основной темно-серый фон */
+    --bg-card: #1e2329;       /* Фон для карточек, новостей и таблиц */
+    --brand-yellow: #fcd535;  /* Фирменный желтый цвет Binance */
+    --text-primary: #eaecef;   /* Основной белый/светло-серый текст */
+    --text-muted: #848e9c;     /* Серый текст для подписей */
+    --crypto-green: #0ecb81;   /* Зеленый цвет для растущего курса */
+    --crypto-red: #f6465d;     /* Красный цвет для падающего курса */
+}
+
+/* Сброс базовых стилей для удобства верстки */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: var(--bg-main);
+    color: var(--text-primary);
+}
+
+/*1 */
+.header {
+    position: fixed; /* Фиксируем шапку */
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000; /* Поднимаем её над всеми остальными элементами */
+    
+    /* Твои текущие стили (для примера, оставь свои) */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 5%;
+    background-color: #111417; 
+    border-bottom: 1px solid #2b3139;
+    box-sizing: border-box; /* Чтобы padding не раздувал ширину 100% */
+}
+
+/* Чтобы первый блок (hero-section) не прятался под зафиксированным хедером, 
+   добавим ему верхний отступ, равный высоте хедера (примерно 70-80px) */
+.hero-section {
+    margin-top: 75px; 
+}
+
+.header-left, .header-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.logo {
+    color: var(--brand-yellow);
+    font-size: 24px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-right: 10px;
+}
+
+.nav-menu a {
+    color: var(--text-primary);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 8px 12px;
+    transition: color 0.2s;
+}
+
+.nav-menu a:hover, .nav-menu a.active {
+    color: var(--brand-yellow);
+}
+
+/* Кнопки в шапке */
+.btn-login {
+    background: none;
+    border: none;
+    color: var(--text-primary);
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.btn-signup {
+    background-color: var(--brand-yellow);
+    color: #000;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: opacity 0.2s;
+}
+
+.btn-signup:hover {
+    opacity: 0.9;
+}
+
+
+/*2 */
+.hero-section {
+    display: flex;
+    padding: 60px 10%;
+    min-height: 500px;
+    align-items: center;
+}
+
+.hero-left {
+    flex: 1;
+    max-width: 600px;
+}
+
+.hero-title {
+    color: var(--brand-yellow);
+    font-size: 56px;
+    font-weight: 800;
+    line-height: 1.1;
+    margin-bottom: 16px;
+}
+
+.white-text {
+    color: var(--text-primary);
+}
+
+.hero-subtitle {
+    color: var(--text-primary);
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 40px;
+}
+
+/* Награды (No.1) */
+.hero-awards {
+    display: flex;
+    gap: 40px;
+    margin-bottom: 40px;
+}
+
+.award {
+    display: flex;
+    flex-direction: column;
+}
+
+.award-number {
+    color: var(--brand-yellow);
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.award-text {
+    color: var(--text-muted);
+    font-size: 14px;
+}
+
+/* Блок регистрации */
+.hero-cta {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+.bonus-tag {
+    border: 1px solid #474d57;
+    padding: 12px 20px;
+    border-radius: 4px;
+    font-size: 14px;
+    color: var(--text-muted);
+}
+
+.btn-main-signup {
+    background-color: var(--brand-yellow);
+    color: #000;
+    border: none;
+    padding: 14px 40px;
+    border-radius: 4px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+/* Контейнер для виджета */
+.crypto-widget {
+    background-color: var(--bg-card);
+    border-radius: 16px;
+    padding: 24px;
+    width: 100%;
+    max-width: 450px;
+    box-shadow: 0px 8px 24px rgba(0, 0, 0, 0.2);
+}
+
+/* Навигация внутри виджета */
+.widget-tabs {
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #2b3139;
+    padding-bottom: 12px;
+    margin-bottom: 16px;
+    font-size: 14px;
+}
+
+.tab {
+    color: var(--text-muted);
+    font-weight: 600;
+    margin-right: 20px;
+    cursor: pointer;
+    position: relative;
+}
+
+.tab.active {
+    color: var(--text-primary);
+}
+
+/* Желтая полосочка под активной вкладкой */
+.tab.active::after {
+    content: '';
+    position: absolute;
+    bottom: -13px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: var(--brand-yellow);
+}
+
+.view-all {
+    color: var(--text-muted);
+    text-decoration: none;
+    margin-left: auto;
+    font-size: 12px;
+}
+
+.view-all:hover {
+    color: var(--brand-yellow);
+}
+
+/* Строки с монетами */
+.coin-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 0;
+    border-bottom: 1px solid #2b3139;
+}
+
+.coin-row:last-child {
+    border-bottom: none;
+}
+
+.coin-info {
+    display: flex;
+    align-items: center;
+    width: 40%;
+}
+
+.coin-icon {
+    font-size: 18px;
+    margin-right: 12px;
+    width: 24px;
+    text-align: center;
+}
+
+/* Цвета для кастомных иконок-символов */
+.gin-icon { color: var(--brand-yellow); font-size: 20px; }
+.btc-icon { color: #f2a900; }
+.eth-icon { color: #627eea; }
+
+.coin-ticker {
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-right: 8px;
+}
+
+.coin-name {
+    color: var(--text-muted);
+    font-size: 12px;
+}
+
+.coin-price {
+    font-weight: 500;
+    color: var(--text-primary);
+    width: 35%;
+    text-align: right;
+}
+
+/* Проценты падения и роста */
+.coin-change {
+    width: 25%;
+    text-align: right;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.coin-change.up {
+    color: var(--crypto-green);
+}
+
+.coin-change.down {
+    color: var(--crypto-red);
+}
+
+/* Небольшая подсветка для твоего токена */
+.animate-pulse {
+    background: linear-gradient(90deg, rgba(252, 213, 53, 0.05) 0%, transparent 100%);
+    border-left: 2px solid var(--brand-yellow);
+    padding-left: 6px;
+}
+/*3 */
+.trading-terminal {
+    background-color: #111417; /* Чуть темнее для контраста */
+    border: 1px solid #2b3139;
+    border-radius: 16px;
+    margin: 40px 10%;
+    padding: 24px;
+}
+
+.terminal-header {
+    border-bottom: 1px solid #2b3139;
+    padding-bottom: 16px;
+    margin-bottom: 20px;
+}
+
+.terminal-pair {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.terminal-price {
+    font-size: 24px;
+    font-weight: bold;
+    color: var(--crypto-green);
+}
+
+.terminal-body {
+    display: flex;
+    gap: 24px;
+}
+
+/* Коробка для графика */
+.chart-box {
+    flex: 2; /* Занимает 2 части пространства */
+    background-color: var(--bg-card);
+    border-radius: 8px;
+    padding: 16px;
+    height: 350px; /* Фиксированная высота для холста */
+}
+
+/* Коробка для сделок */
+.trade-box {
+    flex: 1; /* Занимает 1 часть пространства */
+    background-color: var(--bg-card);
+    border-radius: 8px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+}
+
+.trade-tabs {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.trade-tab {
+    flex: 1;
+    text-align: center;
+    padding: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    border-radius: 4px;
+    color: var(--text-muted);
+    background-color: var(--bg-main);
+}
+
+.trade-tab.active-buy {
+    color: #fff;
+    background-color: var(--crypto-green);
+}
+
+/* Поля ввода */
+.trade-form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.input-group {
+    display: flex;
+    align-items: center;
+    background-color: var(--bg-main);
+    border: 1px solid #2b3139;
+    border-radius: 4px;
+    padding: 8px 12px;
+}
+
+.input-group label {
+    color: var(--text-muted);
+    font-size: 12px;
+    width: 60px;
+}
+
+.input-group input {
+    background: none;
+    border: none;
+    color: #fff;
+    width: 100%;
+    outline: none;
+    font-weight: 600;
+    text-align: right;
+    padding-right: 10px;
+}
+
+.input-currency {
+    color: var(--text-primary);
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.btn-trade-action {
+    border: none;
+    padding: 12px;
+    border-radius: 4px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #fff;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.btn-trade-action.buy-btn {
+    background-color: var(--crypto-green);
+}
+/*4 */
+.safu-section {
+    padding: 80px 10%;
+    background-color: var(--bg-main);
+    border-bottom: 1px solid #2b3139;
+}
+
+/* Верхняя часть (Текст слева, цифры справа) */
+.safu-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 50px;
+    margin-bottom: 60px;
+}
+
+.safu-info {
+    flex: 1;
+}
+
+.safu-title {
+    font-size: 48px;
+    font-weight: 800;
+    line-height: 1.1;
+    margin-bottom: 20px;
+    color: #fff;
+}
+
+.yellow-text {
+    color: var(--brand-yellow);
+}
+
+.safu-subtitle {
+    color: var(--text-muted);
+    font-size: 16px;
+    line-height: 1.6;
+    max-width: 450px;
+}
+
+/* Блок статистики */
+.safu-stats {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.stat-main {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.stat-label {
+    color: var(--text-muted);
+    font-size: 14px;
+}
+
+.stat-value {
+    font-size: 32px;
+    font-weight: 700;
+}
+
+.stat-wallet {
+    font-size: 12px;
+    color: var(--text-muted);
+}
+
+.wallet-address {
+    color: #fff;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.stat-row {
+    display: flex;
+    gap: 40px;
+}
+
+.stat-box {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+/* Нижняя часть (Карточки) */
+.safu-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 равные колонки */
+    gap: 24px;
+}
+
+.video-card {
+    background-color: var(--bg-card);
+    border-radius: 12px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.video-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+}
+
+.video-thumbnail {
+    height: 180px;
+    background: linear-gradient(135deg, #2b3139 0%, #1e2329 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+/* Имитация кнопки плей */
+.play-btn {
+    width: 50px;
+    height: 50px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    font-size: 18px;
+    padding-left: 3px; /* Центрируем треугольник визуально */
+    transition: background-color 0.2s, transform 0.2s;
+    backdrop-filter: blur(5px);
+}
+
+.video-card:hover .play-btn {
+    background-color: var(--brand-yellow);
+    color: #000;
+    transform: scale(1.1);
+}
+
+.video-title {
+    padding: 16px;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+/*5*/
+.tools-section {
+    padding: 80px 10%;
+    background-color: #111417; /* Чуть темнее для контраста */
+    border-bottom: 1px solid #2b3139;
+}
+
+.tools-header {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.tools-title {
+    font-size: 36px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 10px;
+}
+
+.tools-subtitle {
+    color: var(--text-muted);
+    font-size: 16px;
+}
+
+/* Сетка для карточек */
+.tools-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 равные колонки */
+    gap: 30px;
+}
+
+/* Стили карточки */
+.tool-card {
+    background-color: var(--bg-card);
+    border-radius: 16px;
+    padding: 30px;
+    border: 1px solid #2b3139;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease, background 0.3s ease;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+/* 6 */
+
+/* 1. Эффект при наведении на ЛЮБУЮ карточку */
+.tool-card:hover {
+    transform: translateY(-8px);
+    border-color: var(--brand-yellow) !important; /* Наведённая карточка ВСЕГДА жёлтая */
+    box-shadow: 0 12px 30px rgba(252, 213, 53, 0.15); 
+    background: linear-gradient(180deg, var(--bg-card) 0%, rgba(252, 213, 53, 0.04) 100%) !important;
+}
+
+/* 2. Подсветка центральной карточки ПО УМОЛЧАНИЮ */
+.tool-card.active-tool {
+    border-color: var(--brand-yellow);
+    background: linear-gradient(180deg, var(--bg-card) 0%, rgba(252, 213, 53, 0.03) 100%);
+}
+
+/* 3. КРИТИЧЕСКИЙ ФИКС: Если мышка наведена на СЕТКУ, но НЕ на саму центральную карточку 
+      — убираем с центральной дефолтный жёлтый цвет */
+.tools-grid:hover .tool-card.active-tool:not(:hover) {
+    border-color: #2b3139;
+    background: var(--bg-card);
+    box-shadow: none;
+}
+
+
+/* Контейнер для иконки */
+.tool-icon-wrapper {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Сама иконка */
+.tool-icon {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain; /* Сохраняет пропорции */
+}
+
+.tool-card-title {
+    font-size: 20px;
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 15px;
+}
+
+.tool-card-desc {
+    color: var(--text-muted);
+    font-size: 14px;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    flex-grow: 1; /* Описание занимает всё доступное место */
+}
+
+/* Ссылка внизу карточки */
+.tool-link {
+    color: var(--brand-yellow);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    transition: opacity 0.2s;
+}
+
+.tool-link:hover {
+    opacity: 0.8;
+}
+/* --- СТИЛИ ДЛЯ ФУТЕРА --- */
+.footer {
+    background-color: var(--bg-main);
+    padding: 60px 10% 30px 10%;
+    border-top: 1px solid #2b3139;
+    font-family: sans-serif;
+}
+
+/* Верхняя сетка с колонками */
+.footer-top {
+    display: grid;
+    grid-template-columns: 1.5fr repeat(4, 1fr); /* Первая колонка чуть шире */
+    gap: 40px;
+    margin-bottom: 50px;
+}
+
+.footer-col {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.footer-col-title {
+    color: #fff;
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.footer-col a {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 14px;
+    transition: color 0.2s;
+}
+
+.footer-col a:hover {
+    color: #fff;
+}
+
+/* Колонка с соцсетями */
+.community-col {
+    gap: 20px;
+}
+
+.social-icons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.social-link {
+    font-size: 18px;
+    text-decoration: none;
+    filter: grayscale(100%);
+    transition: filter 0.2s, transform 0.2s;
+}
+
+.social-link:hover {
+    filter: grayscale(0%);
+    transform: scale(1.1);
+}
+
+/* Блоки настроек языка, валюты и темы */
+.footer-settings {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 10px;
+}
+
+.setting-item {
+    color: var(--text-primary);
+    font-size: 14px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Стили тумблера переключения темы */
+.theme-switcher {
+    justify-content: space-between;
+    max-width: 150px;
+    color: var(--text-muted);
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 34px;
+    height: 20px;
+}
+
+.switch input { 
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: not-allowed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-color: #474d57;
+    transition: .4s;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 14px; width: 14px;
+    left: 3px; bottom: 3px;
+    background-color: #fff;
+    transition: .4s;
+}
+
+input:checked + .slider {
+    background-color: var(--brand-yellow);
+}
+
+input:checked + .slider:before {
+    transform: translateX(14px);
+    background-color: #000;
+}
+
+.slider.round {
+    border-radius: 20px;
+}
+
+.slider.round:before {
+    border-radius: 50%;
+}
+
+/* Нижняя юридическая часть */
+.footer-bottom {
+    border-top: 1px solid #2b3139;
+    padding-top: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.disclaimer {
+    color: #474d57; /* Очень блеклый текст, как в оригинале */
+    font-size: 12px;
+    line-height: 1.6;
+    text-align: justify;
+}
+
+.copyright-row {
+    display: flex;
+    justify-content: space-between;
+    color: var(--text-muted);
+    font-size: 13px;
+}
+
+.copyright-row a {
+    color: var(--text-muted);
+    text-decoration: none;
+}
+
+.copyright-row a:hover {
+    color: #fff;
+}
+
+/*7*/
+.toast-container {
+    position: fixed;
+    top: 90px; /* Чуть ниже нашего зафиксированного хедера */
+    right: 20px;
+    z-index: 9999; /* Выше абсолютно всего на странице */
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.toast {
+    background-color: #1e2329; /* Темный фон в стиле Ginance */
+    color: #fff;
+    padding: 14px 24px;
+    border-radius: 8px;
+    border-left: 4px solid var(--brand-yellow); /* Желтая полоска слева */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+    font-family: sans-serif;
+    font-size: 14px;
+    min-width: 250px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    
+    /* Анимация появления справа налево */
+    transform: translateX(120%);
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.3s;
+    opacity: 0;
+}
+
+/* Класс, который мы будем добавлять через JS для показа */
+.toast.show {
+    transform: translateX(0);
+    opacity: 1;
+}
+
+.toast-icon {
+    color: var(--brand-yellow);
+    font-weight: bold;
+}
+
+/*8*/
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6); /* Затемнение фона */
+    backdrop-filter: blur(4px); /* Легкое размытие заднего плана */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+/* Когда модалка открыта */
+.modal-overlay.open {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.modal-content {
+    background-color: #1e2329; /* Фирменный темный фон */
+    border: 1px solid #2b3139;
+    padding: 40px;
+    border-radius: 16px;
+    text-align: center;
+    max-width: 400px;
+    width: 90%;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    transform: translateY(-20px);
+    transition: transform 0.3s ease;
+}
+
+.modal-overlay.open .modal-content {
+    transform: translateY(0);
+}
+
+.modal-icon {
+    font-size: 48px;
+    margin-bottom: 20px;
+}
+
+.modal-content h2 {
+    color: #fff;
+    font-size: 24px;
+    margin-bottom: 12px;
+    font-weight: 600;
+}
+
+.modal-content p {
+    color: #eaecef;
+    font-size: 15px;
+    line-height: 1.5;
+    margin-bottom: 25px;
+}
+
+/* Кнопка закрытия */
+#close-modal-btn {
+    background-color: #fcd535; /* Фирменный желтый */
+    color: #111;
+    border: none;
+    padding: 12px 30px;
+    font-size: 16px;
+    font-weight: 600;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    width: 100%;
+}
+
+#close-modal-btn:hover {
+    background-color: #e2be28;
+}
+/* Стили для строки баланса */
+.balance-display {
+    display: flex;
+    justify-content: space-between;
+    font-size: 13px;
+    color: var(--text-muted);
+    padding: 0 4px;
+    margin-bottom: -4px; /* Чтобы стоял ближе к инпуту */
+}
+
+#balance-value {
+    color: var(--brand-yellow); /* Выделим цифру баланса */
+    font-weight: 600;
+}
+
+/* Красный стиль для вкладки и кнопки Sell */
+.trade-tab.active-sell {
+    color: #fff;
+    background-color: var(--crypto-red);
+}
+
+.btn-trade-action.sell-btn {
+    background-color: var(--crypto-red);
+}
+/* Красивый скроллбар для истории сделок */
+#trade-history-list::-webkit-scrollbar {
+    width: 4px;
+}
+#trade-history-list::-webkit-scrollbar-thumb {
+    background: #2b3139;
+    border-radius: 2px;
+}
+
+/* Строки истории ордеров */
+.history-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 4px 6px;
+    background: rgba(255, 255, 255, 0.02);
+    border-radius: 4px;
+}
+.history-type-buy { color: var(--crypto-green); font-weight: 600; }
+.history-type-sell { color: var(--crypto-red); font-weight: 600; }
+.history-time { color: var(--text-muted); }
+
+.modal-overlay {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex; justify-content: center; align-items: center;
+    opacity: 0; pointer-events: none;
+    transition: all 0.3s ease;
+    z-index: 1000;
+}
+.modal-overlay.open {
+    opacity: 1;
+    pointer-events: auto;
+}
+.modal-content {
+    background: #181a20;
+    padding: 30px;
+    border-radius: 8px;
+    border: 1px solid #2b3139;
+    color: white;
+}
